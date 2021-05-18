@@ -3,6 +3,7 @@ package com.rhmtech.management.api.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import com.rhmtech.management.api.Repository.EmployeeRepo;
 import com.rhmtech.management.api.model.Employee;
 
 @Service
+@DynamicUpdate
 public class EmployeeService {
 	@Autowired
 	private EmployeeRepo employeeRepo;
@@ -37,7 +39,8 @@ public class EmployeeService {
 			getemployee.setGrade(employee.getGrade());
 			getemployee.setAddress(employee.getAddress());
 			getemployee.setMobile(employee.getMobile());
-			return employeeRepo.save(employee);
+			//getemployee.setEmp_bank(getemployee.getEmp_bank());
+			return employeeRepo.save(getemployee);
 		} else {
 			System.out.println("Record Not availble in Db");
 		}

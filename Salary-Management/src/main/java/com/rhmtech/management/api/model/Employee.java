@@ -33,11 +33,10 @@ public class Employee implements Serializable {
 	private String address;
 	@Column(name = "emp_mobile")
 	private String mobile;
-	@OneToOne(targetEntity = Employee_bank_acc.class,cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "fk_emp_bank",referencedColumnName = "bid")
+	@OneToOne(targetEntity = Employee_bank_acc.class, cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "fk_emp_bank", referencedColumnName = "bid", nullable = false, updatable = false)
 	private Employee_bank_acc emp_bank;
 
-	
 	public long getId_key() {
 		return id_key;
 	}
@@ -85,8 +84,5 @@ public class Employee implements Serializable {
 	public void setEmp_bank(Employee_bank_acc emp_bank) {
 		this.emp_bank = emp_bank;
 	}
-
-	
-	
 
 }
