@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.rhmtech.management.api.model.Employee;
 import com.rhmtech.management.api.model.SalaryGrade;
 import com.rhmtech.management.api.service.GradeService;
 
@@ -20,6 +18,11 @@ import com.rhmtech.management.api.service.GradeService;
 public class GradeController {
 	@Autowired
 	private GradeService gradeService;
+	
+	
+	final String [] gradeholder= {"grade one","grade two","grade three","grade four","grade five","grade six"};
+	final float gradediff=5000;
+
 
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<List<SalaryGrade>> retriveGrade() {
@@ -33,6 +36,14 @@ public class GradeController {
 	public ResponseEntity<SalaryGrade> addEmployee(@RequestBody SalaryGrade grade) {
 		SalaryGrade sgrade = gradeService.addGrade(grade);
 		return new ResponseEntity<SalaryGrade>(sgrade, HttpStatus.OK);
+
+	}
+	
+
+	@RequestMapping(value = "/lowestgrade/{amount}", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	public ResponseEntity<List<SalaryGrade>> addLowestGrade(@PathVariable("amount") float amount) {
+		List<SalaryGrade> sgrade = gradeService.addLowest(amount,gradeholder,gradediff);
+		return new ResponseEntity<List<SalaryGrade>>(sgrade, HttpStatus.OK);
 
 	}
 	

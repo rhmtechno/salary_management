@@ -39,6 +39,11 @@ public class SalaryGrade {
 	public void setGradeamount(float gradeamount) {
 		this.gradeamount = gradeamount;
 	}
+	@Override
+	public String toString() {
+		return "SalaryGrade [id_pk_key=" + id_pk_key + ", gradename=" + gradename + ", gradeid=" + gradeid
+				+ ", gradeamount=" + gradeamount + "]";
+	}
 	
 	
 

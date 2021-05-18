@@ -1,5 +1,6 @@
 package com.rhmtech.management.api.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,8 +56,28 @@ public class GradeService {
 	}
 
 	public SalaryGrade addGrade(SalaryGrade grade) {
-		
 		return gradeRepo.save(grade);
 	}
 
+	public List<SalaryGrade> addLowest(float lowestAmount, String[] gradeholder, float gratedif) {
+		gradeRepo.deleteAll();
+		List<SalaryGrade> slist = new ArrayList<>();
+
+		int counter = 0;
+		for (int grade = gradeholder.length - 1; grade >= 0; grade--) {
+			float amount = 0;
+			amount += lowestAmount + (counter * gratedif);
+			SalaryGrade sg = new SalaryGrade();
+			String gname = gradeholder[grade];
+			sg.setGradeid(grade + 1);
+			sg.setGradename(gname);
+			sg.setGradeamount(amount);
+			slist.add(sg);
+			System.out.println(slist);
+			counter++;
+
+		}
+		gradeRepo.saveAll(slist);
+		return gradeRepo.findAll();
+	}
 }
