@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rhmtech.management.api.Repository.EmployeeBankRepo;
 import com.rhmtech.management.api.model.Employee;
 import com.rhmtech.management.api.service.EmployeeService;
 
@@ -19,6 +20,8 @@ import com.rhmtech.management.api.service.EmployeeService;
 public class EmployeeController {
 	@Autowired
 	private EmployeeService empservice;
+	@Autowired
+	private EmployeeBankRepo emprepo;
 
 	@RequestMapping(value = "/addemployee", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
