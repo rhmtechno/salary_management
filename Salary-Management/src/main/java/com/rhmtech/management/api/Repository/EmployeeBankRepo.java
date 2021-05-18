@@ -7,4 +7,7 @@ import com.rhmtech.management.api.model.Employee_bank_acc;
 @Repository
 public interface EmployeeBankRepo extends JpaRepository<Employee_bank_acc, Long> {
 
+
+	Employee_bank_acc findByAccno(long id);
+
 }

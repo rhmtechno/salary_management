@@ -3,6 +3,7 @@ package com.rhmtech.management.api.model;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,27 +21,32 @@ public class Employee_bank_acc implements Serializable {
 	private static final long serialVersionUID = 5539989045744321074L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long bid;
-	private long acc_no;
+	private long accid;
+	private long accno;
 	private String acc_name;
 	private String acc_type;
 	private float curr_bal;
 	private String bank_name;
 	private String bank_branch;
 	@CreationTimestamp
+	@Column(updatable = false)
 	private Date Creation_date;
-	public long getBid() {
-		return bid;
+	
+	
+	
+	public long getAccno() {
+		return accno;
 	}
-	public void setBid(long bid) {
-		this.bid = bid;
+	public void setAccno(long accno) {
+		this.accno = accno;
 	}
-	public long getAcc_no() {
-		return acc_no;
+	public long getAccid() {
+		return accid;
 	}
-	public void setAcc_no(long acc_no) {
-		this.acc_no = acc_no;
+	public void setAccid(long accid) {
+		this.accid = accid;
 	}
+	
 	public String getAcc_name() {
 		return acc_name;
 	}

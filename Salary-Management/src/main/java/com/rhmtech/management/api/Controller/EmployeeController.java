@@ -20,8 +20,6 @@ import com.rhmtech.management.api.service.EmployeeService;
 public class EmployeeController {
 	@Autowired
 	private EmployeeService empservice;
-	@Autowired
-	private EmployeeBankRepo emprepo;
 
 	@RequestMapping(value = "/addemployee", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {

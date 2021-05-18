@@ -34,7 +34,7 @@ public class Employee implements Serializable {
 	@Column(name = "emp_mobile")
 	private String mobile;
 	@OneToOne(targetEntity = Employee_bank_acc.class, cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "fk_emp_bank", referencedColumnName = "bid", nullable = false, updatable = false)
+	@JoinColumn(name = "fk_accId", referencedColumnName = "accid", nullable = false, updatable = false)
 	private Employee_bank_acc emp_bank;
 
 	public long getId_key() {
