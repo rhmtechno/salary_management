@@ -17,7 +17,7 @@ import com.rhmtech.management.api.model.Employee;
 import com.rhmtech.management.api.service.EmployeeService;
 
 @RestController
-@CrossOrigin(origins = "http:localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/employee")
 public class EmployeeController {
 	@Autowired

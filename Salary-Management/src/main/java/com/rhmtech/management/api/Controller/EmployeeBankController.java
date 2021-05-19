@@ -15,7 +15,7 @@ import com.rhmtech.management.api.model.Employee_bank_acc;
 import com.rhmtech.management.api.service.EmployeeBankService;
 
 @RestController
-@CrossOrigin(origins = "http:localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/empaccount")
 public class EmployeeBankController {
 

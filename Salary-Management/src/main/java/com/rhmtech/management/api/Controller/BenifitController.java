@@ -16,7 +16,7 @@ import com.rhmtech.management.api.service.BenifitService;
 
 
 @RestController
-@CrossOrigin(origins = "http:localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/benifit")
 public class BenifitController {
 	@Autowired

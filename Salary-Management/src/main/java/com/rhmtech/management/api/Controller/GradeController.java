@@ -15,7 +15,7 @@ import com.rhmtech.management.api.model.SalaryGrade;
 import com.rhmtech.management.api.service.GradeService;
 
 @RestController
-@CrossOrigin(origins = "http:localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/grade")
 public class GradeController {
 	@Autowired
