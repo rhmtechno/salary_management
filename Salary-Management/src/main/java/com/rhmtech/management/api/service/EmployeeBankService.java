@@ -51,9 +51,9 @@ public class EmployeeBankService {
 		}
 	}
 
-	public Employee_bank_acc findByccc_no(long id) {
+	public Employee_bank_acc findByccc_no(String id) {
 		
-		return bankRepo. findByAccno(id);
+		return bankRepo. findByAccnumber(id);
 	}
 
 }

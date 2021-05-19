@@ -8,6 +8,6 @@ import com.rhmtech.management.api.model.Employee_bank_acc;
 public interface EmployeeBankRepo extends JpaRepository<Employee_bank_acc, Long> {
 
 
-	Employee_bank_acc findByAccno(long id);
+	Employee_bank_acc findByAccnumber(String id);
 
 }

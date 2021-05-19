@@ -71,13 +71,14 @@ public class GradeService {
 			String gname = gradeholder[grade];
 			sg.setGradeid(grade + 1);
 			sg.setGradename(gname);
-			sg.setGradeamount(amount);
+			sg.setBasicAmount(amount);
 			slist.add(sg);
-			System.out.println(slist);
 			counter++;
 
 		}
 		gradeRepo.saveAll(slist);
+		slist.clear();
 		return gradeRepo.findAll();
+		
 	}
 }

@@ -24,11 +24,11 @@ public class Employee implements Serializable {
 			@Parameter(name = "sequence_name", value = "emp_sequence"),
 			@Parameter(name = "initial_value", value = "1000"), @Parameter(name = "increment_size", value = "1") })
 	@Column(name = "emp_id")
-	private long id_key;
+	private long emp_id;
 	@Column(name = "emp_name")
 	private String name;
 	@Column(name = "salary_grade")
-	private String grade;
+	private long grade;
 	@Column(name = "emp_address")
 	private String address;
 	@Column(name = "emp_mobile")
@@ -37,12 +37,12 @@ public class Employee implements Serializable {
 	@JoinColumn(name = "fk_accId", referencedColumnName = "accid", nullable = false, updatable = false)
 	private Employee_bank_acc emp_bank;
 
-	public long getId_key() {
-		return id_key;
+	public long getEmp_id() {
+		return emp_id;
 	}
 
-	public void setId_key(long id_key) {
-		this.id_key = id_key;
+	public void setEmp_id(long emp_id) {
+		this.emp_id = emp_id;
 	}
 
 	public String getName() {
@@ -53,11 +53,11 @@ public class Employee implements Serializable {
 		this.name = name;
 	}
 
-	public String getGrade() {
+	public long getGrade() {
 		return grade;
 	}
 
-	public void setGrade(String grade) {
+	public void setGrade(long grade) {
 		this.grade = grade;
 	}
 

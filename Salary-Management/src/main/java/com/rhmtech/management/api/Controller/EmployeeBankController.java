@@ -64,8 +64,8 @@ public class EmployeeBankController {
 	
 	
 	@RequestMapping(value = "/fetchByAcc/{accno}", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<Object> findByAccNo(@PathVariable(name = "accno") long id) {
-		if (id < 0) {
+	public ResponseEntity<Object> findByAccNo(@PathVariable(name = "accno") String id) {
+		if (Integer.parseInt(id) < 0) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		} else {
 			Employee_bank_acc acc = bankservice.findByccc_no(id);
