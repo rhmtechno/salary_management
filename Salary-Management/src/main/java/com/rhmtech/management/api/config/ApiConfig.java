@@ -17,16 +17,16 @@ public class ApiConfig {
 
     @Bean
 	public Docket postsApi() {
-		return new Docket(DocumentationType.SWAGGER_2).groupName("Java Techie").apiInfo(apiInfo()).select()
+		return new Docket(DocumentationType.SWAGGER_2).groupName("Rhm Tech").apiInfo(apiInfo()).select()
 				.paths(regex("/.*")).build();
 	}
 
 		private ApiInfo apiInfo() {
-			return new ApiInfoBuilder().title("E Orange Service")
+			return new ApiInfoBuilder().title("Salary Management")
 					.description("Sample Documentation Generateed Using SWAGGER2 for our Eorange Rest API")
-					.termsOfServiceUrl("https://www.youtube.com/channel/UCORuRdpN2QTCKnsuEaeK-kQ")
+					.termsOfServiceUrl("https://www.youtube.com")
 					.license("rhmtechno")
-					.licenseUrl("https://www.youtube.com/channel/UCORuRdpN2QTCKnsuEaeK-kQ").version("1.0").build();
+					.licenseUrl("https://www.youtube.com").version("1.0").build();
 		}
 
 }

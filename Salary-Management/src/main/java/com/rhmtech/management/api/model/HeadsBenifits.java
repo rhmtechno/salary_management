@@ -27,7 +27,6 @@ public class HeadsBenifits {
 	public float getBenifiteRate() {
 		return benifiteRate;
 	}
-
 	public void setBenifiteRate(float benifiteRate) {
 		this.benifiteRate = benifiteRate;
 	}
