@@ -10,93 +10,68 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import com.rhmtech.management.api.model.HeadsBenifits;
+import com.rhmtech.management.api.service.BenifitService;
 
-import com.rhmtech.management.api.model.SalaryGrade;
-import com.rhmtech.management.api.service.GradeService;
 
 @RestController
-@RequestMapping("\benifit")
+@RequestMapping("/benifit")
 public class BenifitController {
 	@Autowired
-	private GradeService gradeService;
-	
-	
-	final String [] gradeholder= {"grade one","grade two","grade three","grade four","grade five","grade six"};
-	final float gradediff=5000;
+	private BenifitService service;
 
-
+	/* Fetch all */
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<List<SalaryGrade>> retriveGrade() {
+	public ResponseEntity<List<HeadsBenifits>> retriveAll() {
+		List<HeadsBenifits> allData = service.fetchAll();
+		return new ResponseEntity<List<HeadsBenifits>>(allData, HttpStatus.OK);
+	}
 
-		List<SalaryGrade> acclist = gradeService.fetchAllGrade();
-		return new ResponseEntity<List<SalaryGrade>>(acclist, HttpStatus.OK);
+	/* Add new */
+	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	public ResponseEntity<HeadsBenifits> addData(@RequestBody HeadsBenifits payload) {
+		HeadsBenifits rvalue = service.addNew(payload);
+		return new ResponseEntity<HeadsBenifits>(rvalue, HttpStatus.OK);
 
 	}
-	
-	@RequestMapping(value = "/addgrade", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
-	public ResponseEntity<SalaryGrade> addEmployee(@RequestBody SalaryGrade grade) {
-		SalaryGrade sgrade = gradeService.addGrade(grade);
-		return new ResponseEntity<SalaryGrade>(sgrade, HttpStatus.OK);
 
-	}
 	
 
-	@RequestMapping(value = "/lowestgrade/{amount}", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
-	public ResponseEntity<List<SalaryGrade>> addLowestGrade(@PathVariable("amount") float amount) {
-		List<SalaryGrade> sgrade = gradeService.addLowest(amount,gradeholder,gradediff);
-		return new ResponseEntity<List<SalaryGrade>>(sgrade, HttpStatus.OK);
-
-	}
-	
-	
-
-	@RequestMapping(value = "/fetchemployeeacc/{idpkey}", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<Object> findacc(@PathVariable(name = "idpkey") long id) {
-
+	/*
+	 * find by id
+	 */	
+	@RequestMapping(value = "/fethbyPkId/{idpkey}", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<Object> findById(@PathVariable(name = "idpkey") long id) {
 		if (id < 0) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		} else {
-			SalaryGrade acc = gradeService.findEmplyee(id);
-			if (acc != null) {
-				return new ResponseEntity<>(acc, HttpStatus.OK);
+			HeadsBenifits rvalue = service.findOne(id);
+			if (rvalue != null) {
+				return new ResponseEntity<>(rvalue, HttpStatus.OK);
 			} else {
-				return new ResponseEntity<>("Account not exits in our database", HttpStatus.NO_CONTENT);
+				return new ResponseEntity<>("Data not exits in our database", HttpStatus.NO_CONTENT);
 			}
 
 		}
 
 	}
-
+	/* update */
 	@RequestMapping(value = "/{idpkey}", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
-	public ResponseEntity<SalaryGrade> updateEmployeeAcc(@PathVariable(name = "idpkey") long id,
-			@RequestBody SalaryGrade acc) {
-		SalaryGrade empacc = gradeService.updateGrade(id, acc);
-		return new ResponseEntity<SalaryGrade>(empacc, HttpStatus.CREATED);
+	public ResponseEntity<HeadsBenifits> doUpdate(@PathVariable(name = "idpkey") long id,
+			@RequestBody HeadsBenifits payload) {
+		HeadsBenifits rvalue = service.doUpdate(id, payload);
+		return new ResponseEntity<HeadsBenifits>(rvalue, HttpStatus.CREATED);
 
 	}
 
+	/* delete */
 	@RequestMapping(value = "/{idpkey}", method = RequestMethod.DELETE, produces = "application/json")
-	public ResponseEntity<String> deleteEmployeeAcc(@PathVariable(name = "idpkey") long id) {
-		String response = gradeService.deleteAcc(id);
+	public ResponseEntity<String> doDelete(@PathVariable(name = "idpkey") long id) {
+		String response = service.doDelete(id);
 		return new ResponseEntity<String>(response, HttpStatus.CREATED);
 
 	}
 
-	@RequestMapping(value = "/fetchByGradeId/{gradeid}", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<Object> findByAccNo(@PathVariable(name = "gradeid") long id) {
-		if (id < 0) {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		} else {
-			SalaryGrade acc = gradeService.findBygrade(id);
-			if (acc != null) {
-				return new ResponseEntity<>(acc, HttpStatus.OK);
-			} else {
-				return new ResponseEntity<>("Account not exits in our database", HttpStatus.NO_CONTENT);
-			}
-
-		}
-
-	}
-
+	
 
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Payload;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +35,7 @@ public class GradeService {
 	public SalaryGrade updateGrade(long id, SalaryGrade acc) {
 		SalaryGrade getaccInfo = findEmplyee(id);
 		if (getaccInfo != null) {
+			acc.setId_pk_key(getaccInfo.getId_pk_key());
 			return gradeRepo.save(acc);
 		} else {
 			System.out.println("Record Not availble in Db");

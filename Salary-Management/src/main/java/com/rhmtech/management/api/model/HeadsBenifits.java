@@ -20,9 +20,17 @@ public class HeadsBenifits {
 			@Parameter(name = "initial_value", value = "1"), @Parameter(name = "increment_size", value = "1") })
 	private long benifitId;
 	private String benifitName;
+	private float benifiteRate;
 	private int isActive;
 	@CreationTimestamp
 	private Date createDate;
+	public float getBenifiteRate() {
+		return benifiteRate;
+	}
+
+	public void setBenifiteRate(float benifiteRate) {
+		this.benifiteRate = benifiteRate;
+	}
 
 	public long getBenifitId() {
 		return benifitId;

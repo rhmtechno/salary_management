@@ -29,6 +29,7 @@ public class BenifitService {
 	public HeadsBenifits doUpdate(long id, HeadsBenifits payload) {
 		HeadsBenifits getaccInfo = findOne(id);
 		if (getaccInfo != null) {
+			payload.setBenifitId(getaccInfo.getBenifitId());
 			return benifitsRepo.save(payload);
 		} else {
 			System.out.println("Record Not availble in Db");

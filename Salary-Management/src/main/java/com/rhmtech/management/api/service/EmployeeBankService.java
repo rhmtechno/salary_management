@@ -34,6 +34,7 @@ public class EmployeeBankService {
 	public Employee_bank_acc updateProduct(long id, Employee_bank_acc acc) {
 		Employee_bank_acc getaccInfo = findEmplyee(id);
 		if (getaccInfo != null) {
+			acc.setAccid(getaccInfo.getAccid());
 			return bankRepo.save(acc);
 		} else {
 			System.out.println("Record Not availble in Db");
