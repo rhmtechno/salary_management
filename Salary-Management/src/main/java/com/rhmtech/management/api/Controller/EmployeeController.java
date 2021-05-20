@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rhmtech.management.api.Repository.EmployeeBankRepo;
+import com.rhmtech.management.api.dto.EmployeeDto;
 import com.rhmtech.management.api.model.Employee;
+import com.rhmtech.management.api.model.Employee_bank_acc;
 import com.rhmtech.management.api.service.EmployeeService;
 
 @RestController
@@ -27,6 +29,13 @@ public class EmployeeController {
 	public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
 		Employee emp = empservice.addEmployee(employee);
 		return new ResponseEntity<Employee>(emp, HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(value = "/addemployee/v2", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	public ResponseEntity<EmployeeDto> addEmployeev2(@RequestBody EmployeeDto dto,Employee employee,Employee_bank_acc empb) {
+		EmployeeDto emp = empservice.addEmployeev2(dto,employee,empb);
+		return new ResponseEntity<EmployeeDto>(emp, HttpStatus.OK);
 
 	}
 
@@ -64,9 +73,9 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/{employeeId}", method = RequestMethod.DELETE, produces = "application/json")
-	public ResponseEntity<String> deleteEmployee(@PathVariable(name = "employeeId") long id) {
+	public void deleteEmployee(@PathVariable(name = "employeeId") long id) {
 		String response = empservice.deleteEmployee(id);
-		return new ResponseEntity<String>(response, HttpStatus.CREATED);
+		//return new ResponseEntity<String>(response, HttpStatus.CREATED);
 
 	}
 

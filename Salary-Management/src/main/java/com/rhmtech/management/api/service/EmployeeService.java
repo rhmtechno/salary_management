@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rhmtech.management.api.Repository.EmployeeRepo;
+import com.rhmtech.management.api.dto.EmployeeDto;
 import com.rhmtech.management.api.model.Employee;
+import com.rhmtech.management.api.model.Employee_bank_acc;
 
 @Service
 @DynamicUpdate
@@ -20,6 +22,8 @@ public class EmployeeService {
 		return employeeRepo.save(employee);
 
 	}
+	
+	
 
 	public Employee findEmplyee(long id) {
 		Optional<Employee> findById = employeeRepo.findById(id);
@@ -60,6 +64,23 @@ public class EmployeeService {
 	public List<Employee> fetchAllEmployee() {
 
 		return employeeRepo.findAll();
+	}
+
+
+	public EmployeeDto addEmployeev2(EmployeeDto dto, Employee employee, Employee_bank_acc empb) {
+		employee.setName(dto.getName());
+		employee.setMobile(dto.getMobile());
+		employee.setAddress(dto.getAddress());
+		employee.setGrade(dto.getGrade());
+		empb.setAcc_name(dto.getName());
+		empb.setCurr_bal(0);
+		empb.setAcc_type(dto.getAcc_type());
+		empb.setBank_branch(dto.getBank_branch());
+		empb.setBank_name(dto.getBank_name());
+		empb.setAccnumber(dto.getAccnumber());
+		employee.setEmp_bank(empb);
+		Employee save = employeeRepo.save(employee);
+		return null;
 	}
 
 }
