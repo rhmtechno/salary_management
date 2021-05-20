@@ -20,6 +20,12 @@ public class EmployeeBankService {
 		return bankRepo.findAll();
 	}
 
+	public void savebAccount(Employee_bank_acc acc) {
+		bankRepo.save(acc);
+		
+	}
+	
+	
 	public Employee_bank_acc findEmplyee(long id) {
 		Optional<Employee_bank_acc> findById = bankRepo.findById(id);
 		if (findById.isPresent()) {

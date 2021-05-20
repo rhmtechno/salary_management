@@ -26,5 +26,15 @@ public class TransferController {
 	}
 	
 	
+	@RequestMapping(value = "/initiateTransfer/{comAccno}" ,method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<ValidateDto> doTransfer(String comAccno,ValidateDto dto) {
+		boolean validate = service.validate(comAccno);
+		if(validate) {
+        service.InitiateTransfer(comAccno);
+        dto.setValidate(validate);
+		}
+		return new ResponseEntity<ValidateDto>(dto,HttpStatus.OK);
+	}
+	
 
 }
