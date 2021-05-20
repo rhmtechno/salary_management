@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.rhmtech.management.api.Repository.SalaryRepo;
+import com.rhmtech.management.api.model.Company_bank_acc;
 import com.rhmtech.management.api.model.Salary;
 
 @Service
@@ -30,8 +31,10 @@ public class SalaryService {
 	
 	
 	private float getTotal(List<Salary> slist) {
-	double tsalary=	slist.stream().map(employee->employee.getTotalSalary()).mapToDouble(i->i).sum();
+	double tsalary=	slist.stream().parallel().map(employee->employee.getTotalSalary()).mapToDouble(i->i).sum();
 	 return (float) tsalary;
 	}
+	
+	
 
 }
