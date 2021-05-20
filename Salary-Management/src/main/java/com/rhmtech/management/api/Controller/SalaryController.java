@@ -25,6 +25,18 @@ public class SalaryController {
 	}
 	
 	
+	@RequestMapping(value ="/gettotal", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<Salary> totalSalary(){
+		 Salary totalsalary = service.totalSalary();
+		 return new ResponseEntity<Salary>(totalsalary,HttpStatus.OK);
+		
+	}
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value="/{empId}",method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Salary> getSalaryById(@PathVariable(name = "empId")long id){
 		 Salary salary = service.getSalaryById(id);

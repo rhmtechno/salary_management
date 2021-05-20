@@ -174,4 +174,16 @@ public class Salary {
 		this.basicAmount = basicAmount;
 	}
 
+	public Salary() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Salary(float totalSalary) {
+		super();
+		this.totalSalary = totalSalary;
+	}
+	
+	
+
 }

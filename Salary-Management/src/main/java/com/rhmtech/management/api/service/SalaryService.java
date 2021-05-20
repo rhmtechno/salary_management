@@ -22,4 +22,16 @@ public class SalaryService {
 		return  repo.getAllSalary(id);
 	}
 
+
+	public Salary totalSalary() {
+		List<Salary> slist=repo.getAllSalary();
+	return	new com.rhmtech.management.api.model.Salary(getTotal(slist));
+	}
+	
+	
+	private float getTotal(List<Salary> slist) {
+	double tsalary=	slist.stream().map(employee->employee.getTotalSalary()).mapToDouble(i->i).sum();
+	 return (float) tsalary;
+	}
+
 }
