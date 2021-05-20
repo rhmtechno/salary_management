@@ -17,6 +17,11 @@ public class SalaryService {
 	public List<Salary> getSalary (){
 		return repo.getAllSalary();
 	}
+	
+	public void saveCompleteData(List<Salary> salary) {
+		repo.saveAll(salary);
+		
+	}
 
 
 	public Salary getSalaryById(long id) {

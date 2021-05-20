@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rhmtech.management.api.dto.ValidateDto;
-import com.rhmtech.management.api.model.EmployeeTransaction;
 import com.rhmtech.management.api.service.TransferService;
 
 @RestController

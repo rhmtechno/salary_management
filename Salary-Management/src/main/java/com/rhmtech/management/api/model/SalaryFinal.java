@@ -12,9 +12,14 @@ import org.hibernate.annotations.Parameter;
 
 
 @Entity
-@Table(name = "Salary_tbl")
-public class Salary {
+@Table(name = "Salary_Final_tbl")
+public class SalaryFinal {
 	@Id
+	@GeneratedValue(generator = "sequence-generator")
+	@GenericGenerator(name = "sequence-generator", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator", parameters = {
+			@Parameter(name = "sequence_name", value = "salary_sequence"),
+			@Parameter(name = "initial_value", value = "1"), @Parameter(name = "increment_size", value = "1") })
+	@Column(nullable = true)
 	private long sId;
 	private long emp_id;
 	private String emp_name;
@@ -169,29 +174,5 @@ public class Salary {
 		this.basicAmount = basicAmount;
 	}
 
-	public Salary() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Salary(float totalSalary) {
-		super();
-		this.totalSalary = totalSalary;
-	}
-	
-	/*
-	 * public Salary(long emp_id, String emp_name, long salary_grade, String
-	 * emp_address, String emp_mobile, String accnumber, String acc_name, String
-	 * acc_type, float curr_bal, String bank_name, String bank_branch, String
-	 * gradename, float basicAmount, float houseRent, float medicalAllowance, float
-	 * totalSalary) { super(); this.emp_id = emp_id; this.emp_name = emp_name;
-	 * this.salary_grade = salary_grade; this.emp_address = emp_address;
-	 * this.emp_mobile = emp_mobile; this.accnumber = accnumber; this.acc_name =
-	 * acc_name; this.acc_type = acc_type; this.curr_bal = curr_bal; this.bank_name
-	 * = bank_name; this.bank_branch = bank_branch; this.gradename = gradename;
-	 * this.basicAmount = basicAmount; this.houseRent = houseRent;
-	 * this.medicalAllowance = medicalAllowance; this.totalSalary = totalSalary; }
-	 */
-	
 
 }
