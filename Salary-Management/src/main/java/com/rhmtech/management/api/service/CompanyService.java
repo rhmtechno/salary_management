@@ -51,11 +51,23 @@ public class CompanyService {
 	public Company_bank_acc addNew(Company_bank_acc payload) {
 		return companyRepo.save(payload);
 	}
-	
+
 	public Company_bank_acc findByAccnumber(String accnumber) {
 		return companyRepo.findByAccnumber(accnumber);
-		
+
 	}
 
+	public Company_bank_acc AddBalance(String accnumber, float balance) {
+		Company_bank_acc findByAccnumber = companyRepo.findByAccnumber(accnumber);
+		if (findByAccnumber != null) {
+			float curr_bal = findByAccnumber.getCurr_bal();
+			float newbal = curr_bal + balance;
+			findByAccnumber.setCurr_bal(newbal);
+			companyRepo.save(findByAccnumber);
+		}
+
+		return findByAccnumber;
+
+	}
 
 }
