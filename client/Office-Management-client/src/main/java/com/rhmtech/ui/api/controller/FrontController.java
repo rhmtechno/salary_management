@@ -1,10 +1,11 @@
 package com.rhmtech.ui.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -13,7 +14,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rhmtech.ui.api.service.ClientService;
 import com.rhmtech.ui.api.model.Employee;
-import com.rhmtech.ui.api.model.Employee_bank_acc;
+import com.rhmtech.ui.api.model.EmployeeDto;
+import com.rhmtech.ui.api.model.Grade;
 
 import java.util.List;
 
@@ -23,32 +25,37 @@ public class FrontController {
 	private ClientService service;
 	@RequestMapping("/")
 	public String home() {
-		return "index";
+		return "grade";
 		
 	}
 	
 	
+	
 	@GetMapping("/gson")
-	public ResponseEntity<List<Employee>> gSonTest() throws JsonMappingException, JsonProcessingException {
+	public String gSonTest(Model model) throws JsonMappingException, JsonProcessingException {
 		ResponseEntity<String> res = service.CallGetAllUserAPIJson();
 		String JsonString = res.getBody();
 		ObjectMapper mapper = new ObjectMapper();
 		List<Employee> map = mapper.readValue(JsonString, new TypeReference<List<Employee>>() {
 		});
-		System.out.println(res.getStatusCodeValue());
-		//resClient.saveAllUserResponse2(map);
-		
-		for (Employee u : map) { System.out.println(u.getAddress());
-		 System.out.println(u.getName()); }
-		
-		return new ResponseEntity<List<Employee>>(map,HttpStatus.OK);
+		model.addAttribute("status",map);
+		return "viewemp";
 	}
 	
-	@GetMapping("/create")
-	public void createEmp(Employee employee,Employee_bank_acc emp_bank) {
-		employee.setEmp_bank(emp_bank);
-		service.callCreateUserApi(employee);
-		
+	@PostMapping("/create")
+	public String createEmp(EmployeeDto dto) {
+		service.callCreateUserApi(dto);
+		return "employee";
+	}
+	@GetMapping("/addgrade")
+	public String addGrade() {
+		return "grade";
+	}
+	
+	@PostMapping("/grade")
+	public String createGrade(Grade grade) {
+		service.callCreateGradeApi(grade.getAmount());
+		return "viewgrade";
 	}
 
 }

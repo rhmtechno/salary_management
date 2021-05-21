@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.rhmtech.ui.api.model.Employee;
+import com.rhmtech.ui.api.model.EmployeeDto;
 import com.rhmtech.ui.api.model.Employee_bank_acc;
+import com.rhmtech.ui.api.model.Grade;
 
 @Service
 public class ClientService {
@@ -52,8 +54,17 @@ public class ClientService {
 	}
 	
 	
-	public void callCreateUserApi(Employee employee) {
-		ResponseEntity<Employee> user2 = template.postForEntity("http://localhost:8080/employee/addemployee", employee, Employee.class);
+	public void callCreateUserApi(EmployeeDto employee) {
+		ResponseEntity<EmployeeDto> user2 = template.postForEntity("http://localhost:8080/employee/addemployee/v2", employee, EmployeeDto.class);
 		System.out.println(user2.getBody());
+	}
+
+	public void callCreateGradeApi(float amount) {
+		System.out.println(amount);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
+		ResponseEntity<String> result = template.exchange("http://localhost:8080/grade/lowestgrade/"+amount+"", HttpMethod.POST, entity, String.class);
+		
 	}
 }

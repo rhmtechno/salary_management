@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+
+	
+	
+		<h2>Available Employee</h2>         
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>Employee Id</th>
+        <th>Name</th>
+        <th>Mobile</th>
+         <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+   <span th:text="${emplist}"  />
+
+					<div th:each="pd: ${status}">
+
+						<tr>
+						<td><span th:text="${pd.getEmp_id()}" /></td>
+						
+							<td><span th:text="${pd.getName()}" /></td>
+							<td><span th:text="${pd.getMobile()}" /></td>
+							<td><span th:text="${pd.getAddress()}" /></td>
+							
+							
+							
+						</tr>
+
+					</div>
+				</tbody>
+  </table>
+	
+	</div>
+
+</body>
+
+</html>
