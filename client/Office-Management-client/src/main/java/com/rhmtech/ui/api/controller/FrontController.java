@@ -26,7 +26,7 @@ public class FrontController {
 	private ClientService service;
 	@RequestMapping("/")
 	public String home() {
-		return "grade";
+		return "employee";
 		
 	}
 	
@@ -46,7 +46,7 @@ public class FrontController {
 	@PostMapping("/create")
 	public String createEmp(EmployeeDto dto) {
 		service.callCreateUserApi(dto);
-		return "employee";
+		return "viewemp";
 	}
 	@GetMapping("/addgrade")
 	public String addGrade() {

@@ -32,7 +32,11 @@
 					<div th:each="pd: ${status}">
 
 						<tr>
+						<td><span th:text="${pd. getGradename()}" /></td>
+						<td><span th:text="${pd. getGradeid()}" /></td>
 						<td><span th:text="${pd. getBasicAmount()}" /></td>
+						<td><span th:text="${pd. getHouseRent()}" /></td>
+						<td><span th:text="${pd. getMedicalAllowance()}" /></td>
 							
 							
 							
