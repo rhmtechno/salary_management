@@ -76,7 +76,7 @@ public class ClientService {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
-		ResponseEntity<String> result = template.exchange("http://localhost:8080/grade/lowestgrade/"+amount+"", HttpMethod.POST, entity, String.class);
+		ResponseEntity<String> result = template.exchange("http://localhost:8080/grade/lowestgrade/"+amount+"", HttpMethod.GET, entity, String.class);
 		
 	}
 }

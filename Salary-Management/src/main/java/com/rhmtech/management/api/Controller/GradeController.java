@@ -3,6 +3,7 @@ package com.rhmtech.management.api.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,7 +24,8 @@ public class GradeController {
 	
 	
 	final String [] gradeholder= {"grade one","grade two","grade three","grade four","grade five","grade six"};
-	final float gradediff=5000;
+	@Value("${grade.diff}")
+	private float gradedifent;
 
 
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
@@ -42,9 +44,9 @@ public class GradeController {
 	}
 	
 
-	@RequestMapping(value = "/lowestgrade/{amount}", method = RequestMethod.GET, consumes = {"text/plain","application/json"}, produces = "application/json")
+	@RequestMapping(value = "/lowestgrade/{amount}", method = RequestMethod.GET)
 	public ResponseEntity<List<SalaryGrade>> addLowestGrade(@PathVariable("amount") float amount) {
-		List<SalaryGrade> sgrade = gradeService.addLowest(amount,gradeholder,gradediff);
+		List<SalaryGrade> sgrade = gradeService.addLowest(amount,gradeholder,gradedifent);
 		return new ResponseEntity<List<SalaryGrade>>(sgrade, HttpStatus.OK);
 
 	}
