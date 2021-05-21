@@ -16,6 +16,7 @@ import com.rhmtech.ui.api.service.ClientService;
 import com.rhmtech.ui.api.model.Employee;
 import com.rhmtech.ui.api.model.EmployeeDto;
 import com.rhmtech.ui.api.model.Grade;
+import com.rhmtech.ui.api.model.SalaryGrade;
 
 import java.util.List;
 
@@ -55,7 +56,19 @@ public class FrontController {
 	@PostMapping("/grade")
 	public String createGrade(Grade grade) {
 		service.callCreateGradeApi(grade.getAmount());
+		return "redirect:/viewgrade";
+	}
+	
+	@GetMapping("/viewgrade")
+	public String viewGrade(Model model) throws JsonMappingException, JsonProcessingException {
+		ResponseEntity<String> res = service.CallGetAllGradeAPIJson();
+		String JsonString = res.getBody();
+		ObjectMapper mapper = new ObjectMapper();
+		List<SalaryGrade> map = mapper.readValue(JsonString, new TypeReference<List<SalaryGrade>>() {
+		});
+		model.addAttribute("status",map);
 		return "viewgrade";
 	}
+	
 
 }

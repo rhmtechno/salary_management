@@ -3,6 +3,8 @@ package com.rhmtech.ui.api.service;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -52,6 +54,16 @@ public class ClientService {
 		ResponseEntity<String> result = template.exchange("http://localhost:8080/employee", HttpMethod.GET, entity, String.class);
 		return result;
 	}
+	
+	@PostConstruct
+	public ResponseEntity<String> CallGetAllGradeAPIJson() {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
+		ResponseEntity<String> result = template.exchange("http://localhost:8080/grade", HttpMethod.GET, entity, String.class);
+		return result;
+	}
+	
 	
 	
 	public void callCreateUserApi(EmployeeDto employee) {

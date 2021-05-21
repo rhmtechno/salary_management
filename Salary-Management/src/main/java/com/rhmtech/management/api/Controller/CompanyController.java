@@ -77,20 +77,28 @@ public class CompanyController {
 	/*
 	  * Add Balance
 	 */
-	@RequestMapping(value = "/Addbalance/{accno}/{balance}", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<Object> addbalance(@PathVariable(name = "accno") String id,@PathVariable(name = "balance") float balance) {
-		if (Integer.parseInt(id) < 0) {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		} else {
-			Company_bank_acc rvalue = service.AddBalance(id,balance);
-			if (rvalue != null) {
-				return new ResponseEntity<>(rvalue, HttpStatus.OK);
-			} else {
-				return new ResponseEntity<>("Data not exits in our database", HttpStatus.NO_CONTENT);
-			}
-
-		}
-
+	/*
+	 * @RequestMapping(value = "/Addbalance/{accno}/{balance}", method =
+	 * RequestMethod.GET, produces = "application/json") public
+	 * ResponseEntity<Object> addbalance(@PathVariable(name = "accno") String
+	 * id,@PathVariable(name = "balance") float balance) { if (Integer.parseInt(id)
+	 * < 0) { return new ResponseEntity<>(HttpStatus.BAD_REQUEST); } else {
+	 * Company_bank_acc rvalue = service.AddBalance(id,balance); if (rvalue != null)
+	 * { return new ResponseEntity<>(rvalue, HttpStatus.OK); } else { return new
+	 * ResponseEntity<>("Data not exits in our database", HttpStatus.NO_CONTENT); }
+	 * 
+	 * }
+	 */
+		
+		
+		/*
+		  * Add Balance
+		 */
+		@RequestMapping(value = "/Addbalance/{accno}/{balance}", method = RequestMethod.GET, produces = "application/json")
+		public void addbalance(@PathVariable(name = "accno") String id,@PathVariable(name = "balance") float balance) {
+			
+				Company_bank_acc rvalue = service.AddBalance(id,balance);
+				
 	}
 	
 	

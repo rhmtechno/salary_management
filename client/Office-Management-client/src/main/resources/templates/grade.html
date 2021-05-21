@@ -10,14 +10,14 @@
 </head>
 
 <body>
-	div class="container">
+	<div class="container">
 		<div class="col-md-6 offset-md-3">
 			<h3> Enter Lowest grade  amount </h3>
 			<form action="/grade" method="POST">
 
 				<div class="form-group">
 					<label>amount</label>
-					<input type="text" class="form-control" id="name"  name="amount">
+					<input type="number" class="form-control" id="name"  name="amount" required>
 				</div>
 
 				<button class="btn btn-success" type="submit">Submit</button>
