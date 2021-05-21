@@ -42,7 +42,7 @@ public class GradeController {
 	}
 	
 
-	@RequestMapping(value = "/lowestgrade/{amount}", method = RequestMethod.POST, consumes = {"text/plain","application/json"}, produces = "application/json")
+	@RequestMapping(value = "/lowestgrade/{amount}", method = RequestMethod.GET, consumes = {"text/plain","application/json"}, produces = "application/json")
 	public ResponseEntity<List<SalaryGrade>> addLowestGrade(@PathVariable("amount") float amount) {
 		List<SalaryGrade> sgrade = gradeService.addLowest(amount,gradeholder,gradediff);
 		return new ResponseEntity<List<SalaryGrade>>(sgrade, HttpStatus.OK);
