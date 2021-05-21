@@ -23,7 +23,7 @@ public class GradeController {
 	private GradeService gradeService;
 	
 	
-	final String [] gradeholder= {"grade one","grade two","grade three","grade four","grade five","grade six"};
+	//final String [] gradeholder= {"grade one","grade two","grade three","grade four","grade five","grade six"};
 	@Value("${grade.diff}")
 	private float gradedifent;
 
@@ -46,7 +46,7 @@ public class GradeController {
 
 	@RequestMapping(value = "/lowestgrade/{amount}", method = RequestMethod.GET)
 	public ResponseEntity<List<SalaryGrade>> addLowestGrade(@PathVariable("amount") float amount) {
-		List<SalaryGrade> sgrade = gradeService.addLowest(amount,gradeholder,gradedifent);
+		List<SalaryGrade> sgrade = gradeService.addLowest(amount,gradeService.getRank(),gradedifent);
 		return new ResponseEntity<List<SalaryGrade>>(sgrade, HttpStatus.OK);
 
 	}
