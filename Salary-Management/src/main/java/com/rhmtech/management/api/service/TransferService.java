@@ -26,9 +26,8 @@ public class TransferService {
 	@Autowired
 	private EmpTransactionRepo transactionRepo;
 
-	public boolean validate(String cacc) {
-		Salary totalSalary = sservice.totalSalary();
-		float totalSalary2 = totalSalary.getTotalSalary();
+	public boolean validate(String cacc) { 
+		float totalSalary2 = sservice.totalSalary();
 
 		Company_bank_acc findByAccnumber = cservice.findByAccnumber(cacc);
 		float curr_bal = findByAccnumber.getCurr_bal();

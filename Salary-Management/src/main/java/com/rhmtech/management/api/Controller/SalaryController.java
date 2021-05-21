@@ -26,9 +26,9 @@ public class SalaryController {
 	
 	
 	@RequestMapping(value ="/gettotal", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<Salary> totalSalary(){
-		 Salary totalsalary = service.totalSalary();
-		 return new ResponseEntity<Salary>(totalsalary,HttpStatus.OK);
+	public ResponseEntity<Float> totalSalary(){
+		 float totalsalary = service.totalSalary();
+		 return new ResponseEntity<Float>(totalsalary,HttpStatus.OK);
 		
 	}
 	
