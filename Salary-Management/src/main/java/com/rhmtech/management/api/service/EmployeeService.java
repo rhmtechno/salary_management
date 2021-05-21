@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.rhmtech.management.api.Repository.EmployeeRepo;
 import com.rhmtech.management.api.dto.EmployeeDto;
+import com.rhmtech.management.api.exception.EmployeeeServiceExp;
 import com.rhmtech.management.api.model.Employee;
 import com.rhmtech.management.api.model.Employee_bank_acc;
 
@@ -22,28 +23,26 @@ public class EmployeeService {
 		return employeeRepo.save(employee);
 
 	}
-	
-	
 
-	public Employee findEmplyee(long id) {
-		Optional<Employee> findById = employeeRepo.findById(id);
-		if (findById.isPresent()) {
-			Employee employee = findById.get();
-			return employee;
-		} else {
-			System.out.println("Employee Not availble in Db");
+	public Employee findEmplyee(long id) throws EmployeeeServiceExp {
+		Employee emp = null;
+        try {
+        	emp = employeeRepo.findById(id).get();
+		} catch (Exception e) {
+			throw new EmployeeeServiceExp(e.getLocalizedMessage());
 		}
-		return null;
+		
+return emp;
 	}
 
-	public Employee updateProduct(long id, Employee employee) {
+	public Employee updateProduct(long id, Employee employee) throws EmployeeeServiceExp {
 		Employee getemployee = findEmplyee(id);
 		if (getemployee != null) {
 			getemployee.setName(employee.getName());
 			getemployee.setGrade(employee.getGrade());
 			getemployee.setAddress(employee.getAddress());
 			getemployee.setMobile(employee.getMobile());
-			//getemployee.setEmp_bank(getemployee.getEmp_bank());
+			// getemployee.setEmp_bank(getemployee.getEmp_bank());
 			return employeeRepo.save(getemployee);
 		} else {
 			System.out.println("Record Not availble in Db");
@@ -51,7 +50,7 @@ public class EmployeeService {
 		return null;
 	}
 
-	public String deleteEmployee(long id) {
+	public String deleteEmployee(long id) throws EmployeeeServiceExp {
 		Employee getemployee = findEmplyee(id);
 		if (getemployee != null) {
 			employeeRepo.delete(getemployee);
@@ -65,7 +64,6 @@ public class EmployeeService {
 
 		return employeeRepo.findAll();
 	}
-
 
 	public EmployeeDto addEmployeev2(EmployeeDto dto, Employee employee, Employee_bank_acc empb) {
 		employee.setName(dto.getName());

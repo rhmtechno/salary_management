@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rhmtech.management.api.Repository.EmployeeBankRepo;
 import com.rhmtech.management.api.dto.EmployeeDto;
+import com.rhmtech.management.api.exception.EmployeeeServiceExp;
 import com.rhmtech.management.api.model.Employee;
 import com.rhmtech.management.api.model.Employee_bank_acc;
 import com.rhmtech.management.api.service.EmployeeService;
@@ -48,7 +49,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/fetchemployee/{emp_id}", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<Object> addEmployee(@PathVariable(name = "emp_id") long id) {
+	public ResponseEntity<Object> addEmployee(@PathVariable(name = "emp_id") long id) throws EmployeeeServiceExp {
 
 		if (id < 1000) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -66,14 +67,14 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/{employeeId}", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
 	public ResponseEntity<Employee> updateEmployee(@PathVariable(name = "employeeId") long id,
-			@RequestBody Employee employee) {
+			@RequestBody Employee employee) throws EmployeeeServiceExp {
 		Employee emp = empservice.updateProduct(id, employee);
 		return new ResponseEntity<Employee>(emp, HttpStatus.CREATED);
 
 	}
 
 	@RequestMapping(value = "/{employeeId}", method = RequestMethod.DELETE, produces = "application/json")
-	public void deleteEmployee(@PathVariable(name = "employeeId") long id) {
+	public void deleteEmployee(@PathVariable(name = "employeeId") long id) throws EmployeeeServiceExp {
 		String response = empservice.deleteEmployee(id);
 		//return new ResponseEntity<String>(response, HttpStatus.CREATED);
 
