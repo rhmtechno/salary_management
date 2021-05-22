@@ -1,11 +1,14 @@
 package com.rhmtech.management.api.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -37,6 +40,16 @@ public class SalaryFinal {
 	private float houseRent;
 	private float medicalAllowance;
 	private float totalSalary;
+	@CreationTimestamp
+	private Date CreateTime;
+	
+	public Date getCreateTime() {
+		return CreateTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		CreateTime = createTime;
+	}
 
 	public long getsId() {
 		return sId;

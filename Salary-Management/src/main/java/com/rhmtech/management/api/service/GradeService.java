@@ -27,7 +27,9 @@ public class GradeService {
 	private RankService rservice;
 
 	public List<SalaryGrade> fetchAllGrade() {
-		return gradeRepo.findAll();
+		
+		return gradeRepo.findByOrderByGradeidAsc();
+		//return gradeRepo.findAll();
 	}
 
 	public SalaryGrade findEmplyee(long id) {
