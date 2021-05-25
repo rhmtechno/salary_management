@@ -1,5 +1,6 @@
 package com.rhmtech.management.api.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,13 +27,13 @@ public class EmployeeService {
 
 	public Employee findEmplyee(long id) throws EmployeeeServiceExp {
 		Employee emp = null;
-        try {
-        	emp = employeeRepo.findById(id).get();
+		try {
+			emp = employeeRepo.findById(id).get();
 		} catch (Exception e) {
 			throw new EmployeeeServiceExp(e.getLocalizedMessage());
 		}
-		
-return emp;
+
+		return emp;
 	}
 
 	public Employee updateProduct(long id, Employee employee) throws EmployeeeServiceExp {
@@ -63,6 +64,32 @@ return emp;
 	public List<Employee> fetchAllEmployee() {
 
 		return employeeRepo.findAll();
+	}
+
+	public List<EmployeeDto> fetchAllEmployeeDto() {
+		List<Employee> findAll = employeeRepo.findAll();
+		List<EmployeeDto> dlist = new ArrayList<>();
+		for (Employee e : findAll) {
+			EmployeeDto dto = new EmployeeDto();
+			Employee_bank_acc aa = e.getEmp_bank();
+			long grade = e.getGrade();
+			String name = e.getName();
+			String mobile = e.getMobile();
+			String add = e.getAddress();
+			//
+			dto.setCurrball(aa.getCurr_bal());
+			dto.setEmpId(e.getEmp_id());
+			dto.setAcc_type(aa.getAcc_type());
+			dto.setGrade(grade);
+			dto.setName(name);
+			dto.setMobile(mobile);
+			dto.setAddress(add);
+			dto.setAccnumber(aa.getAccnumber());
+			dto.setBank_name(aa.getBank_name());
+			dto.setBank_branch(aa.getBank_branch());
+			dlist.add(dto);
+			};
+		return dlist;
 	}
 
 	public EmployeeDto addEmployeev2(EmployeeDto dto, Employee employee, Employee_bank_acc empb) {

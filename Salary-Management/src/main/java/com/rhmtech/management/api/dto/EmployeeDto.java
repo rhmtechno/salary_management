@@ -1,19 +1,34 @@
 package com.rhmtech.management.api.dto;
 
+
 public class EmployeeDto {
 
+	private long empId;
 	private String name;
-
 	private long grade;
-
 	private String address;
-
 	private String mobile;
-
 	private String accnumber;
 	private String acc_type;
 	private String bank_name;
 	private String bank_branch;
+	private float currball;
+	
+	public float getCurrball() {
+		return currball;
+	}
+
+	public void setCurrball(float currball) {
+		this.currball = currball;
+	}
+
+	public long getEmpId() {
+		return empId;
+	}
+
+	public void setEmpId(long empId) {
+		this.empId = empId;
+	}
 
 	public String getAccnumber() {
 		return accnumber;

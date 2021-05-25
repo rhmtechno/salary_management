@@ -42,9 +42,16 @@ public class EmployeeController {
 
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<List<Employee>> retriveEmployee() {
-
+		
 		List<Employee> emplist = empservice.fetchAllEmployee();
 		return new ResponseEntity<List<Employee>>(emplist, HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(value = "/ejoinb" ,method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<List<EmployeeDto>> retriveEmployeeDto() {
+		List<EmployeeDto> emplist = empservice.fetchAllEmployeeDto();
+		return new ResponseEntity<List<EmployeeDto>>(emplist, HttpStatus.OK);
 
 	}
 
